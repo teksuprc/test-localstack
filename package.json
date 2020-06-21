@@ -1,0 +1,24 @@
+{
+  "name": "test-localstack",
+  "version": "1.0.0",
+  "description": "",
+  "main": "handler.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "kinesalite": "^3.3.1",
+    "serverless": "^1.73.1",
+    "serverless-offline": "^6.4.0",
+    "serverless-offline-kinesalite": "^1.0.2",
+    "serverless-offline-kinesis": "^4.0.1",
+    "serverless-s3-local": "^0.6.2"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.701.0",
+    "serverless-webpack": "^5.3.2",
+    "webpack": "^4.43.0"
+  }
+}

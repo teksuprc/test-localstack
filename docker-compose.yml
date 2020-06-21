@@ -1,0 +1,51 @@
+version: '3.7'
+
+services:
+  # localstack:
+  #   image: localstack/localstack:latest
+  #   container_name: localstack
+  #   ports:
+  #     - '4563-4599:4563-4599'
+  #     - '8080:8080'
+  #   environment:
+  #     - SERVICES=kinesis
+  #     - DEBUG=1
+  #     - DATA_DIR=./.localstack/data
+  #   volumes:
+  #     - './.localstack:/tmp/localstack'
+  #     - '/var/run/docker.sock:/var/run/docker.sock'
+
+  kinesalite:
+    image: dlsniper/kinesalite:latest
+    container_name: kinesalite
+    ports:
+      - 4567:4567
+    environment:
+      KINESIS_HOST: localhost
+      KINESIS_PORT: 4567
+      
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch-oss:7.7.1
+    container_name: elasticsearch
+    ports:
+      - 9200:9200
+    environment:
+      - node.name=elasticsearch
+      - discovery.type=single-node
+      - http.port=9200
+      - http.cors.enabled=true
+      - http.cors.allow-origin=/https?:\/\/localhost(:[0-9]+)?/
+      - http.cors.allow-methods=OPTIONS, HEAD, GET, POST, PUT, DELETE
+      - http.cors.allow-headers=X-Requested-With,X-Auth-Token,Content-Type,Content-Length,Authorization
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - elasticsearch-data:/usr/share/elasticsearch/data
+
+volumes:
+  elasticsearch-data:
+    driver: local

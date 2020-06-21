@@ -1,0 +1,6 @@
+
+.elasticsearch
+.localstack
+.mydb
+in_stream
+node_modules
