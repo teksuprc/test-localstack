@@ -17,7 +17,7 @@
     "serverless-s3-local": "^0.6.2"
   },
   "dependencies": {
-    "aws-sdk": "^2.701.0",
+    "aws-sdk": "^2.814.0",
     "serverless-webpack": "^5.3.2",
     "webpack": "^4.43.0"
   }
